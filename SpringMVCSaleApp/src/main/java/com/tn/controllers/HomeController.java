@@ -22,6 +22,6 @@ public class HomeController {
     @RequestMapping("/")
     public String index(Model model){
         model.addAttribute("category", this.categoryRepository.getCategory());
-        return "base";
+        return "index";
     }
 }

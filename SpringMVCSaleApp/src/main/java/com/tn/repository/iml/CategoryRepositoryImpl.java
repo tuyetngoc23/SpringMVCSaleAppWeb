@@ -5,30 +5,37 @@
  */
 package com.tn.repository.iml;
 
+
+
 import com.tn.pojo.Category;
 import com.tn.repository.CategoryRepository;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Query;
+import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 /**
  *
  * @author Admin
  */
 @Repository
 public class CategoryRepositoryImpl implements CategoryRepository{
+    @Autowired
+    private LocalSessionFactoryBean sessionFactory;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
+    @Transactional
     public List<Category> getCategory() {
-        List<Category> cates = new ArrayList<>();
-        Category c1 = new Category();
-        c1.setId(1);
-        c1.setName("Mobile");
-        Category c2 = new Category();
-        c2.setId(2);
-        c2.setName("Tablet");
-        cates.add(c2);
-        cates.add(c1);
-        return cates;
+        
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query q = session.createQuery("From Category");
+        
+        return q.getResultList();
     }
     
 }
