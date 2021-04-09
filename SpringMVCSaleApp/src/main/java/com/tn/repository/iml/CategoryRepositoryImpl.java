@@ -36,7 +36,6 @@ public class CategoryRepositoryImpl implements CategoryRepository{
         Query q = session.createQuery("From Category");
         
         return q.getResultList();
-<<<<<<< HEAD
     }
 
     @Override
@@ -44,8 +43,7 @@ public class CategoryRepositoryImpl implements CategoryRepository{
     public Category getCateById(int id) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         return session.get(Category.class, id);
-=======
->>>>>>> 3aa2a2f58ede0eb2cfb722e7f5ef09229a7bcfb3
+
     }
     
 }

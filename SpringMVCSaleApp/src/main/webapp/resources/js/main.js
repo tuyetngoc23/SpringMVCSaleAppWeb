@@ -4,7 +4,7 @@
  * and open the template in the editor.
  *
  */
-function deleteProduct(ProductId){
+function deleteProduct(productId){
     if(confirm("Bạn có chắc chắn muốn xóa") == true){
         fetch(`/SpringMVCSaleApp/api/products/${productId}`, {
             method : "delete",

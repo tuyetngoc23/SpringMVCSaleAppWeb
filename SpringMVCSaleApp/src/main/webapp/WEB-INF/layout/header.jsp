@@ -16,11 +16,7 @@
     <ul class="navbar-nav">
         <c:forEach items="${category}" var="cate">
             <li class="nav-item">
-<<<<<<< HEAD
                 <a class="nav-link" href="<c:url value="/?cateId${cate.id}"/>">${cate.name}</a>
-=======
-                <a class="nav-link" href="#">${cate.name}</a>
->>>>>>> 3aa2a2f58ede0eb2cfb722e7f5ef09229a7bcfb3
             </li>
         </c:forEach>
     </ul>
