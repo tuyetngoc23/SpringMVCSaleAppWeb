@@ -27,6 +27,7 @@ public class HomeController {
     private ProductService productService;
 
     @RequestMapping("/")
+<<<<<<< HEAD
     public String index(Model model,
             @RequestParam(name = "cateId", required = false) String cateId,
             @RequestParam(name = "kw", required = false, defaultValue = "") String kw) {
@@ -37,6 +38,10 @@ public class HomeController {
             model.addAttribute("products",
                     this.categoryService.getCateById(Integer.parseInt(cateId)).getProducts());
         }
+=======
+    public String index(Model model){
+        model.addAttribute("category", this.categoryRepository.getCategory());
+>>>>>>> 3aa2a2f58ede0eb2cfb722e7f5ef09229a7bcfb3
         return "index";
     }
 }
