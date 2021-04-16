@@ -29,4 +29,6 @@ public class ApiProductController {
     public void deleteProduct(@PathVariable(name="productId") int productId){
         this.productService.deleteProduct(productId);
     }
+    
+   
 }

@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -28,8 +30,10 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Size(max=100, min =1,message = "{products.name.maxLen}")
     private String name;
     private String description;
+    @NotNull(message = "{products.price.nullErr}")
     private BigDecimal price;
     private String image;
     @Column(name="created_date")

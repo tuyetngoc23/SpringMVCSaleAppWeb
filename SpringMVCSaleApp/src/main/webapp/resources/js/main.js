@@ -4,18 +4,18 @@
  * and open the template in the editor.
  *
  */
-function deleteProduct(productId){
-    if(confirm("Bạn có chắc chắn muốn xóa") == true){
+function deleteProduct(productId) {
+    if (confirm("Bạn có chắc chắn muốn xóa") == true) {
         fetch(`/SpringMVCSaleApp/api/products/${productId}`, {
-            method : "delete",
-            headers :{
-                "Content-Type" : "application/json"
-            }  
+            method: "delete",
+            headers: {
+                "Content-Type": "application/json"
+            }
         }).then(res => {
-            if(res.status == 200){
+            if (res.status == 200) {
                 let d = document.getElementById(`product${productId}`);
                 d.style.display = "none";
-            }else
+            } else
                 alert("Something Wrong");
         })
     }

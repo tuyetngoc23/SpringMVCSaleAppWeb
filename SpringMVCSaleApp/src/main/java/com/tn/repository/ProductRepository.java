@@ -16,5 +16,7 @@ import java.util.List;
 public interface ProductRepository {
     public List<Product> getProducts(String kw);
     public List<Product> getProducts(BigDecimal fromPrice, BigDecimal toPrice);
+    Product getProductId(int productId);
     public boolean deleteProduct(int productId);
+    boolean addOrUpdateProduct(Product product);
 }

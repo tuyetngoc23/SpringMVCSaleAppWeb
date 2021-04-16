@@ -37,5 +37,15 @@ public class ProductServiceImpl implements  ProductService{
     public boolean deleteProduct(int productId) {
         return this.productRepository.deleteProduct(productId);
     }
+
+    @Override
+    public boolean addOrUpdateProduct(Product product) {
+        return this.productRepository.addOrUpdateProduct(product);
+    }
+
+    @Override
+    public Product getProductId(int productId) {
+        return this.productRepository.getProductId(productId);
+    }
     
 }
