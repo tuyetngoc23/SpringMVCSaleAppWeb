@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -27,8 +28,12 @@ public class ProductController {
     @Autowired
     private ProductService productService;
     @GetMapping("/")
-    public String addOrUpdateView(Model model){
-        model.addAttribute("product", new Product());
+    public String addOrUpdateView(Model model, 
+            @RequestParam(name="productId", defaultValue = "0") int productId){
+        if(productId > 0)
+            model.addAttribute("product", this.productService.getProductId(productId));
+        else
+            model.addAttribute("product", new Product());
         return "product";
     }
     

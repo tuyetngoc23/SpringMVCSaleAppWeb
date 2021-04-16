@@ -34,7 +34,7 @@
             <td>${p.price} VNĐ</td>
             <td>
                 <a href="javascript:;" class="btn btn-danger" onclick="deleteProduct(${p.id})">Xóa</a>
-                <a href="<c:url value="/products/?productId=${p.id}"/>" class="btn btn-info" onclick="addOrUpdateProduct(${p.id})">Cập Nhật</a>
+                <a href="<c:url value="/products/?productId=${p.id}"/>" class="btn btn-info" onclick="addToCart(${p.id})">Cập Nhật</a>
                 <a href="javascript:;" class="btn btn-success" onclick="">Thêm Vào Giỏ</a>
             </td>
         </tr>

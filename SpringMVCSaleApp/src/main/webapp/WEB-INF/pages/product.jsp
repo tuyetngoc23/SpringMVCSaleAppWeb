@@ -39,12 +39,25 @@
             </label>
             <form:select cssClass="form-control" id="category" path="category" >
                 <c:forEach items="${category}" var="cate">
-                    <option value="${cate.id}" >${cate.name}</option>
+                    <c:if test="${cate.id == product.category.id}">
+                        <option selected value="${cate.id}" >${cate.name}</option>
+                    </c:if>
+                    <c:if test="${cate.id != product.category.id}">
+                        <option value="${cate.id}" >${cate.name}</option>
+                    </c:if>
                 </c:forEach>
             </form:select>
         </div>
         <div class="form-group">
-            <input type="submit" id="price" cssClass="btn btn-warning" value="<spring:message code="products.add"/>"/>
+            <form:hidden path="id"/>
+            <c:if test="${product.id <= 0}">
+                <input type="submit" id="price" cssClass="btn btn-warning" 
+                       value="<spring:message code="products.add"/>"/>
+            </c:if>
+            <c:if test="${product.id > 0}">
+                <input type="submit" id="price" cssClass="btn btn-warning" 
+                       value="<spring:message code="products.update"/>"/>
+            </c:if>
         </div>
     </form:form>
 </section>

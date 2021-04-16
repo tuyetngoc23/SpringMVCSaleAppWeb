@@ -128,6 +128,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
+    @Transactional
     public Product getProductId(int productId) {
         return this.sessionFactory.getObject().getCurrentSession()
                 .get(Product.class, productId);
