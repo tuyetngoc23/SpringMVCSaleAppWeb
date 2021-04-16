@@ -35,7 +35,9 @@
             <td>
                 <a href="javascript:;" class="btn btn-danger" onclick="deleteProduct(${p.id})">Xóa</a>
                 <a href="<c:url value="/products/?productId=${p.id}"/>" class="btn btn-info" onclick="">Cập Nhật</a>
-                <a href="javascript:;" class="btn btn-success" onclick="addToCart(${p.id})">Thêm Vào Giỏ</a>
+                <a href="javascript:;" class="btn btn-success" onclick="addToCart(${p.id})">
+                    Thêm Vào Giỏ
+                </a>
             </td>
         </tr>
     </c:forEach>

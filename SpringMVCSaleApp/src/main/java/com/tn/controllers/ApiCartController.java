@@ -7,6 +7,7 @@ package com.tn.controllers;
 
 import com.tn.pojo.Cart;
 import com.tn.pojo.Product;
+import com.tn.service.OrderService;
 import com.tn.service.ProductService;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApiCartController {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private OrderService orderService;
     
     @GetMapping("/cart/{productId}")
     @ResponseStatus(HttpStatus.OK)
@@ -52,5 +56,26 @@ public class ApiCartController {
         }
         
         session.setAttribute("cart", cart);
+    }
+    
+    @GetMapping("/cart/{productId}/{quantity}")
+    @ResponseStatus(HttpStatus.OK)
+    public void changeNumber(@PathVariable(name="productId") int productId,
+            @PathVariable(name="quantity") int quantity,
+            HttpSession session){
+        Map<Integer, Cart> cart = (Map<Integer, Cart>) session.getAttribute("cart");
+        if(cart.containsKey(productId) == true){
+            Cart c = cart.get(productId);
+            c.setQuantity(c.getQuantity() + quantity);
+        }
+        session.setAttribute("cart", cart);
+    }
+    
+    @PostMapping("/pay")
+    @ResponseStatus(HttpStatus.OK)
+    public void saveOrder(HttpSession session){
+        Map<Integer, Cart> cart = (Map<Integer, Cart>) session.getAttribute("cart");
+        if(this.orderService.addOrder(cart) == true)
+            session.removeAttribute("cart");
     }
 }

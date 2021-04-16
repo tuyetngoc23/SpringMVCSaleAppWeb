@@ -26,18 +26,19 @@
     <c:if test="${cart != null}">
         <c:forEach items="${cart.values()}" var="c">
             <tr>
-            <td>${c.productId}</td>
-            <td>${c.productName}</td>
-            <td>${c.price}</td>
-            <td>
-                <input type="number" class="form-control" value="${c.quantity}"/>
-            </td>
-        </tr>
+                <td>${c.productId}</td>
+                <td>${c.productName}</td>
+                <td>${c.price}</td>
+                <td>
+                    <input type="number" class="form-control" value="${c.quantity}" 
+                           onchange="changeNumber(${c.productId}, this.value)"/>
+                </td>
+            </tr>
         </c:forEach>
     </c:if>
 </table>
 <div>
-    <input type="submit" value="Thanh Toán" class="btn btn-info"/>
+    <input type="submit" value="Thanh Toán" onclick="pay()" class="btn btn-info"/>
 </div>
 
 <script src="<c:url value="/js/main.js"/>"></script>

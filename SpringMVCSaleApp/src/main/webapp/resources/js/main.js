@@ -31,3 +31,28 @@ function addToCart(productId) {
             alert("Something Wrong");
     })
 }
+
+function changeNumber(productId, quantity) {
+    fetch(`/SpringMVCSaleApp/api/cart/${productId}/${quantity}`).then(function (res) {
+        if (res.status == 200) {
+            let d = document.getElementById("cart-counter")
+            let v = parseInt(d.innerText);
+            d.innerText = v + 1;
+        } else
+            alert("Something Wrong");
+    })
+}
+
+function pay(){
+    fetch(`/SpringMVCSaleApp/api/pay`, {
+        method : "POST",
+        headers :{
+            "Content-Type" : "application/json"
+        }
+    }).then(res => {
+        if(res.status == 200)
+            location.reload();
+        else
+            alert("Something Wrong!!!")
+    })
+}
