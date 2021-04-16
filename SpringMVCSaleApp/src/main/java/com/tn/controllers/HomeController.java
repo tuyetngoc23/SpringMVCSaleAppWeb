@@ -5,9 +5,13 @@
  */
 package com.tn.controllers;
 
+import com.tn.Utils.Utils;
+import com.tn.pojo.Cart;
 import com.tn.repository.CategoryRepository;
 import com.tn.service.CategoryService;
 import com.tn.service.ProductService;
+import java.util.Map;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,8 +34,9 @@ public class HomeController {
     private ProductService productService;
     
     @ModelAttribute
-    public void addAttribute(Model model){
+    public void addAttribute(Model model, HttpSession session){
         model.addAttribute("category", this.categoryService.getCategory());
+        model.addAttribute("cartStats", Utils.getCartStats((Map<Integer, Cart>) session.getAttribute("cart")));
     }
 
     @RequestMapping("/")
